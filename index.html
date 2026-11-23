@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#06070a" />
+    <meta
+      name="description"
+      content="EventClock V2 — 精确到秒的活动倒计时、路演计时与沉浸式大屏。"
+    />
+    <title>EventClock V2 · 活动倒计时</title>
+    <script>
+      try {
+        var raw = localStorage.getItem('eventclock.v2.state');
+        if (raw) {
+          var saved = JSON.parse(raw);
+          if (saved && saved.settings && saved.settings.theme === 'light') {
+            document.documentElement.dataset.theme = 'light';
+            document.documentElement.style.colorScheme = 'light';
+            document
+              .querySelector('meta[name="theme-color"]')
+              .setAttribute('content', '#f3f4f7');
+          }
+        }
+      } catch (error) {
+        /* storage unavailable; keep dark default */
+      }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
